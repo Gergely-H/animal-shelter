@@ -1,0 +1,576 @@
+{
+  "extends": [
+    /**
+     * ESLint configuration must be loaded first to allow plugins to overwrite base ESLint rules.
+     * E.g.: Prettier plugin must be at the last to make sure it disables specific ESLint rules.
+     * Source: https://www.npmjs.com/package/eslint-plugin-prettier#user-content-recommended-configuration
+     */
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:react/all",
+    "plugin:react-hooks/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:eslint-comments/recommended",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "consistent-default-export-name",
+    "eslint-plugin-filename-export",
+    "no-relative-import-paths",
+    "check-file",
+    "prefer-arrow-functions",
+    "@stylistic"
+  ],
+  "ignorePatterns": ["*.mjs"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "root": true,
+  "overrides": [
+    {
+      "files": ["src/{app,components}/**/*.{ts,tsx}"],
+      "rules": {
+        /**
+         **************************************************************************
+         * filename-export plugin rules:
+         **************************************************************************
+         */
+        "filename-export/match-named-export": "error"
+      }
+    }
+  ],
+  "rules": {
+    "prefer-arrow-functions/prefer-arrow-functions": [
+      "warn",
+      {
+        "allowNamedFunctions": false,
+        "classPropertiesAllowed": false,
+        "disallowPrototype": false,
+        "returnStyle": "unchanged",
+        "singleReturnOnly": false
+      }
+    ],
+    /**
+     **************************************************************************
+     * Base ESLint rules:
+     **************************************************************************
+     */
+    "semi": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-unreachable": "error",
+    "no-param-reassign": "error",
+    "array-callback-return": "error",
+    "no-new-native-nonconstructor": "error",
+    "no-await-in-loop": "error",
+    "no-self-compare": "error",
+    "no-template-curly-in-string": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unreachable-loop": "error",
+    "require-atomic-updates": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "complexity": ["error", 10],
+    "consistent-return": "error",
+    "curly": ["error", "all"],
+    "default-case": "error",
+    "default-case-last": "error",
+    "dot-notation": "error",
+    "eqeqeq": "error",
+    "guard-for-in": "error",
+    "max-depth": ["error", 3],
+    "max-lines": "error",
+    "max-lines-per-function": "error",
+    "max-nested-callbacks": ["error", 3],
+    "max-params": "error",
+    "max-statements": "error",
+    "multiline-comment-style": "error",
+    "no-alert": "error",
+    "no-array-constructor": "error",
+    "no-bitwise": "error",
+    "no-console": "error",
+    "no-continue": "error",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-floating-decimal": "error",
+    "no-implicit-coercion": "error",
+    "no-inline-comments": "error",
+    "no-iterator": "error",
+    "no-labels": "error",
+    "no-lone-blocks": "error",
+    "no-lonely-if": "error",
+    "no-mixed-operators": "error",
+    "no-multi-assign": "error",
+    "no-multi-str": "error",
+    "no-negated-condition": "error",
+    "no-nested-ternary": "error",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-proto": "error",
+    "no-return-assign": "error",
+    "no-script-url": "error",
+    "no-sequences": "error",
+    "no-throw-literal": "error",
+    "no-undef-init": "error",
+    "no-unneeded-ternary": "error",
+    "no-unused-expressions": "error",
+    "no-useless-call": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-rename": "error",
+    "no-useless-return": "error",
+    "no-void": "error",
+    "object-shorthand": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-destructuring": "error",
+    "prefer-exponentiation-operator": "error",
+    "prefer-object-has-own": "error",
+    "prefer-object-spread": "error",
+    "prefer-promise-reject-errors": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "spaced-comment": "error",
+    "symbol-description": "error",
+    "yoda": "error",
+    "lines-around-comment": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "MemberExpression[object.name='React']",
+        "message": "Please import and use specific React exports instead of the namespace. Error code: 1"
+      },
+      {
+        "selector": "TSQualifiedName > Identifier[name='React']",
+        "message": "Please import and use specific React exports instead of the namespace. Error code: 2"
+      },
+      /**
+       * Allow arrow functions only to unify coding style and avoid the old function fallpits.
+       * E.g. not binding properly the this keyword, using the arguments keyword, relying on hoisting.
+       * The only exceptions are constructor functions and generator functions as they cannot be arrow functions.
+       */
+      {
+        "selector": "MethodDefinition[kind!=constructor][value.generator=false]",
+        "message": "Function expressions are not allowed. Use arrow functions instead. Error code: 3"
+      },
+      {
+        "selector": "PropertyDefinition[value.type=FunctionExpression][value.generator=false]",
+        "message": "Function expressions are not allowed. Use arrow functions instead. Error code: 4"
+      },
+      {
+        "selector": "VariableDeclarator[init.type=FunctionExpression][init.generator=false]",
+        "message": "Function expressions are not allowed. Use arrow functions instead. Error code: 5"
+      },
+      {
+        "selector": "AssignmentExpression[right.type=FunctionExpression][right.generator=false]",
+        "message": "Function expressions are not allowed. Use arrow functions instead. Error code: 6"
+      },
+      {
+        "selector": "FunctionDeclaration[generator=false]",
+        "message": "Function declarations are not allowed. Use arrow functions instead. Error code: 7"
+      },
+      {
+        "selector": "TSAbstractMethodDefinition[value.generator=false]",
+        "message": "Method declarations are not allowed. Use arrow functions instead. Error code: 8"
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "react",
+            "importNames": ["default"],
+            "message": "Do not use default import of react, use named imports, e.g.: import type { ComponentProps } from 'react'; or import { memo } from 'react';"
+          },
+          {
+            "name": "next/image",
+            "importNames": ["default"],
+            "message": "Do not use Next Image component. Use the custom common Image component."
+          }
+        ]
+      }
+    ],
+    "@typescript-eslint/no-restricted-types": [
+      "error",
+      {
+        "types": {
+          "React.FC": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "React.FunctionComponent": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "React.FunctionalComponent": "Use inline prop types. Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "FC": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "FunctionComponent": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "FunctionalComponent": "Use inline prop types. Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177"
+        }
+      }
+    ],
+    /**
+     * The "operator-linebreak" rule would force linebreaks before the operators
+     * but it conflicts with an uneditable option of prettier.
+     * Source: https://github.com/prettier/prettier/issues/3806
+     * Keeping it here in the hopes that Prettier Team changes their mind as everyone requested in the comments.
+     */
+    /* "operator-linebreak": ["error", "before"], */
+
+    /**
+     **************************************************************************
+     * import plugin rules:
+     **************************************************************************
+     */
+    "import/consistent-type-specifier-style": "error",
+    "import/no-deprecated": "error",
+    "import/no-empty-named-blocks": "error",
+    "import/no-extraneous-dependencies": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-commonjs": "error",
+    "import/no-import-module-exports": "error",
+    "import/no-absolute-path": "error",
+    "import/no-cycle": "error",
+    "import/no-self-import": "error",
+    "import/no-useless-path-segments": "error",
+    "import/no-relative-packages": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-anonymous-default-export": "error",
+    "import/no-namespace": "error",
+    "import/extensions": [
+      "error",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
+
+    /**
+     **************************************************************************
+     * no-relative-import-paths plugin rules:
+     **************************************************************************
+     */
+    "no-relative-import-paths/no-relative-import-paths": [
+      "error",
+      { "allowSameFolder": true }
+    ],
+
+    /**
+     **************************************************************************
+     * prettier plugin rules:
+     **************************************************************************
+     */
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "jsxSingleQuote": true
+      }
+    ],
+
+    /**
+     **************************************************************************
+     * consistent-default-export-name plugin rules:
+     **************************************************************************
+     */
+    "consistent-default-export-name/default-import-match-filename": "error",
+
+    /**
+     **************************************************************************
+     * check-file plugin rules:
+     **************************************************************************
+     */
+    "check-file/no-index": "error",
+    "check-file/filename-blocklist": [
+      "error",
+      {
+        "*.*.ts": "*.ts",
+        "*.*.tsx": "*.tsx"
+      }
+    ],
+    /**
+     * The following configuration of "check-file/folder-match-with-fex" rule
+     * is specific to this project file structure.
+     */
+    "check-file/folder-match-with-fex": [
+      "error",
+      {
+        "*.tsx": "src/{app,components}/**"
+      }
+    ],
+    /**
+     * The following configuration of "check-file/filename-naming-convention" rule
+     * is specific to this project file structure.
+     * kebab-case: +([a-z])*([a-z0-9])*(-+([a-z0-9]))
+     * PascalCase: [A-Z][a-zA-Z0-9]*
+     */
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "src/app/**/*.tsx": "+([a-z])*([a-z0-9])*(-+([a-z0-9]))|[A-Z][a-zA-Z0-9]*",
+        "src/components/**/*.tsx": "PASCAL_CASE"
+      }
+    ],
+    /**
+     * The following configuration of "check-file/folder-naming-convention" rule
+     * is specific to this project file structure.
+     */
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/app/**": "NEXT_JS_APP_ROUTER_CASE",
+        "src/!(app)/**": "KEBAB_CASE"
+      }
+    ],
+
+    /**
+     **************************************************************************
+     * eslint-comments plugin rules:
+     **************************************************************************
+     */
+    "eslint-comments/no-unused-disable": "error",
+    "eslint-comments/require-description": "error",
+
+    /**
+     **************************************************************************
+     * react plugin rules:
+     **************************************************************************
+     */
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["arrow-function"],
+        "unnamedComponents": ["arrow-function"]
+      }
+    ],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "react/jsx-no-bind": [
+      "error",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "react-hooks/exhaustive-deps": "error",
+    "react/forbid-component-props": "off",
+    "react/jsx-props-no-spreading": ["error", { "exceptions": ["NextImage"] }],
+    "react/jsx-max-depth": ["error", { "max": 4 }],
+    "react/prefer-read-only-props": "off",
+
+    /**
+     **************************************************************************
+     * @typescript-eslint plugin rules:
+     **************************************************************************
+     */
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "all",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array-simple"
+      }
+    ],
+    "@typescript-eslint/consistent-type-assertions": "error",
+    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/method-signature-style": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      /**
+       * Default:
+       */
+      {
+        "selector": ["default"],
+        "format": ["strictCamelCase", "StrictPascalCase"]
+      },
+      /**
+       * Variables:
+       */
+      {
+        "selector": [
+          "variable",
+          "parameter",
+          "property",
+          "parameterProperty",
+          "accessor"
+        ],
+        "format": ["strictCamelCase"]
+      },
+      /**
+       * Global variables:
+       */
+      {
+        "selector": ["variable"],
+        "modifiers": ["global", "const"],
+        "format": ["UPPER_CASE", "strictCamelCase"]
+      },
+      /**
+       * Booleans:
+       */
+      {
+        "selector": [
+          "variable",
+          "parameter",
+          "property",
+          "parameterProperty",
+          "accessor"
+        ],
+        "types": ["boolean"],
+        "format": ["StrictPascalCase"],
+        "prefix": ["is", "should", "has", "can", "did", "will"]
+      },
+      /**
+       * Global booleans:
+       */
+      {
+        "selector": ["variable"],
+        "types": ["boolean"],
+        "modifiers": ["global", "const"],
+        "format": ["UPPER_CASE"],
+        "prefix": ["IS_", "SHOULD_", "HAS_", "CAN_", "DID_", "WILL_"]
+      },
+      /**
+       * Types:
+       */
+      {
+        "selector": ["enumMember", "typeLike"],
+        "format": ["StrictPascalCase"]
+      },
+      /**
+       * Enums:
+       */
+      {
+        "selector": ["enum"],
+        "format": ["UPPER_CASE"]
+      },
+      /**
+       * Functions:
+       */
+      {
+        "selector": ["variable"],
+        "types": ["function"],
+        "format": ["strictCamelCase", "StrictPascalCase"]
+      },
+      /**
+       * The "@typescript-eslint/no-unused-vars" rule allows unused variable declarations
+       * that start with underscore but the "@typescript-eslint/naming-convention" rule
+       * with the "default" selector forbids naming formats prefixed with underscore.
+       * This rule re-enables the underscore prefix naming convention only for function parameters
+       * because sometimes it is necessary to define function parameter without using it.
+       * E.g. When we need the index of the map function but not mapped valued.
+       */
+      {
+        "selector": "parameter",
+        "format": null,
+        "filter": {
+          "regex": "^_",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/no-confusing-void-expression": [
+      "error",
+      {
+        "ignoreArrowShorthand": true
+      }
+    ],
+    "@typescript-eslint/no-import-type-side-effects": "error",
+    "@typescript-eslint/no-inferrable-types": [
+      "error",
+      {
+        "ignoreParameters": true,
+        "ignoreProperties": true
+      }
+    ],
+    "@typescript-eslint/no-redundant-type-constituents": "error",
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/consistent-type-exports": [
+      "error",
+      {
+        "fixMixedExportsWithInlineTypeSpecifier": false
+      }
+    ],
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/no-unnecessary-qualifier": "error",
+    "@typescript-eslint/no-useless-empty-export": "error",
+    "@typescript-eslint/promise-function-async": "error",
+    "@typescript-eslint/require-array-sort-compare": "error",
+    "@typescript-eslint/strict-boolean-expressions": "error",
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    /**
+     * The "default-param-last" base eslint rule must be disabled as it can report incorrect errors
+     * when using "@typescript-eslint/default-param-last" rule.
+     * Source: https://typescript-eslint.io/rules/default-param-last/#options
+     */
+    "default-param-last": "off",
+    "@typescript-eslint/default-param-last": "error",
+    /**
+     * The "init-declarations" base eslint rule must be disabled as it can report incorrect errors
+     * when using "@typescript-eslint/init-declarations" rule.
+     * Source: https://typescript-eslint.io/rules/init-declarations/#options
+     */
+    "init-declarations": "off",
+    "@typescript-eslint/init-declarations": "error",
+    /**
+     * The "no-invalid-this" base eslint rule must be disabled as it can report incorrect errors
+     * when using "@typescript-eslint/no-invalid-this" rule.
+     * Source: https://typescript-eslint.io/rules/no-invalid-this/#options
+     */
+    "no-invalid-this": "off",
+    "@typescript-eslint/no-invalid-this": "error",
+    /**
+     * The "no-loop-func" base eslint rule must be disabled as it can report incorrect errors
+     * when using "@typescript-eslint/no-loop-func" rule.
+     * Source: https://typescript-eslint.io/rules/no-loop-func/#options
+     */
+    "no-loop-func": "off",
+    "@typescript-eslint/no-loop-func": "error",
+    /**
+     * The "no-magic-numbers" base eslint rule must be disabled as it can report incorrect errors
+     * when using "@typescript-eslint/no-magic-numbers" rule.
+     * Source: https://typescript-eslint.io/rules/no-magic-numbers/#how-to-use
+     */
+    "no-magic-numbers": "off",
+    "@typescript-eslint/no-magic-numbers": "error",
+    /**
+     * The "require-await" base eslint rule must be disabled as it can report incorrect errors
+     * when using "@typescript-eslint/require-await" rule.
+     * Source: https://typescript-eslint.io/rules/require-await/#how-to-use
+     */
+    "require-await": "off",
+    "@typescript-eslint/require-await": "error",
+
+    /**
+     **************************************************************************
+     * @stylistic plugin rules:
+     **************************************************************************
+     */
+    "padding-line-between-statements": "off",
+    "@stylistic/padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": ["return", "block-like", "export", "interface", "type"]
+      },
+      {
+        "blankLine": "always",
+        "prev": ["block-like", "interface", "type"],
+        "next": "*"
+      }
+    ]
+  }
+}
