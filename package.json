@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "test": "echo 'No test has been added yet.'"
+    "test": "echo No test has been added yet."
   },
   "dependencies": {
     "next": "15.0.3",
