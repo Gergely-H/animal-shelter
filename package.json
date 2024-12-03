@@ -12,7 +12,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo 'No test has been added yet.'"
   },
   "dependencies": {
     "next": "15.0.3",
