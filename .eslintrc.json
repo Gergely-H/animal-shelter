@@ -44,16 +44,6 @@
     }
   ],
   "rules": {
-    "prefer-arrow-functions/prefer-arrow-functions": [
-      "warn",
-      {
-        "allowNamedFunctions": false,
-        "classPropertiesAllowed": false,
-        "disallowPrototype": false,
-        "returnStyle": "unchanged",
-        "singleReturnOnly": false
-      }
-    ],
     /**
      **************************************************************************
      * Base ESLint rules:
@@ -266,6 +256,22 @@
       {
         "singleQuote": true,
         "jsxSingleQuote": true
+      }
+    ],
+
+    /**
+     **************************************************************************
+     * prefer-arrow-functions plugin rules:
+     **************************************************************************
+     */
+    "prefer-arrow-functions/prefer-arrow-functions": [
+      "warn",
+      {
+        "allowNamedFunctions": false,
+        "classPropertiesAllowed": true,
+        "disallowPrototype": true,
+        "returnStyle": "implicit",
+        "singleReturnOnly": false
       }
     ],
 
