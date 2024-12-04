@@ -362,6 +362,7 @@
         "allowArrowFunctions": true
       }
     ],
+    "react/jsx-no-leaked-render": "off",
     "react-hooks/exhaustive-deps": "error",
     "react/forbid-component-props": "off",
     "react/jsx-props-no-spreading": ["error", { "exceptions": ["NextImage"] }],
