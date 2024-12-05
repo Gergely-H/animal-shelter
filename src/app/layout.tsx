@@ -1,3 +1,4 @@
+import { Header } from '@/components/layouts/header/Header';
 import { Bootstrapper } from '@/components/utils/bootstrapper/Bootstrapper';
 import { getDictionary } from '@/lang/dictionaries';
 import type { Metadata } from 'next';
@@ -33,8 +34,9 @@ const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang='hu'>
     <Bootstrapper>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} overflow-y-scroll antialiased`}
       >
+        <Header />
         {children}
       </body>
     </Bootstrapper>
