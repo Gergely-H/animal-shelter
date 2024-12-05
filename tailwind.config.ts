@@ -10,8 +10,7 @@ const config: Config = {
   theme: {
     extend: {},
   },
-  // eslint-disable-next-line import/no-commonjs, @typescript-eslint/no-require-imports -- ESLint cannot resolve this dynamic import properly.
-  plugins: [require('@tailwindcss/container-queries')],
+  plugins: [],
 };
 
 export default config;

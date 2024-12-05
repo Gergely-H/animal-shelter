@@ -16,7 +16,6 @@
     "test": "echo No test has been added yet."
   },
   "dependencies": {
-    "@tailwindcss/container-queries": "^0.1.1",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
