@@ -291,8 +291,8 @@
     "check-file/filename-blocklist": [
       "error",
       {
-        "*.*.ts": "*.ts",
-        "*.*.tsx": "*.tsx"
+        "src/**/*.*.ts": "*.ts",
+        "src/**/*.*.tsx": "*.tsx"
       }
     ],
     /**
