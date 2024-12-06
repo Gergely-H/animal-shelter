@@ -1,6 +1,7 @@
 import { Header } from '@/components/layouts/header/Header';
 import { Bootstrapper } from '@/components/utils/bootstrapper/Bootstrapper';
-import { getDictionary } from '@/lang/dictionaries';
+import { HEADER_FULL_HEIGHT } from '@/constants/dimensions';
+import { getDictionary } from '@/languages/dictionaries';
 import type { Metadata } from 'next';
 import local from 'next/font/local';
 import type { ReactNode } from 'react';
@@ -37,7 +38,8 @@ const RootLayout = ({ children }: RootLayoutProps) => (
         className={`${geistSans.variable} ${geistMono.variable} overflow-y-scroll antialiased`}
       >
         <Header />
-        {children}
+        {/* eslint-disable-next-line tailwindcss/no-custom-classname, @typescript-eslint/restrict-template-expressions -- The HEADER_FULL_HEIGHT constant couples the height of Header with the height of top margin of the pages so the Header does not cover any page content. */}
+        <div className={`mt-${HEADER_FULL_HEIGHT}`}>{children}</div>
       </body>
     </Bootstrapper>
   </html>

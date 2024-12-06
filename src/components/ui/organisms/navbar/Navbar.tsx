@@ -1,5 +1,5 @@
 import { NavButton } from '@/components/ui/molecules/nav-button/NavButton';
-import { getDictionary } from '@/lang/dictionaries';
+import { getDictionary } from '@/languages/dictionaries';
 
 const dictionary = getDictionary();
 
