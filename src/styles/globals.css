@@ -15,6 +15,8 @@
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 214, 219, 220;
+
+    --header-full-height: 10rem;
   }
 }
 
@@ -31,5 +33,13 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .header-full-height {
+    height: var(--header-full-height);
+  }
+
+  .page-padding-top {
+    padding-top: var(--header-full-height);
   }
 }
