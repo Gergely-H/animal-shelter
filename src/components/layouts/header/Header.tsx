@@ -7,7 +7,7 @@ import { HEADER_FULL_HEIGHT } from '@/constants/dimensions';
 import { useHeader } from './useHeader';
 
 export const Header = () => {
-  const { isOpen, setIsOpen, isScrolled } = useHeader();
+  const { isNavbarOpen, toggleNavbar, closeNavbar, isScrolled } = useHeader();
 
   return (
     <header
@@ -23,11 +23,8 @@ export const Header = () => {
         }`}
     >
       <Logo />
-      <HamburgerButton
-        isOpen={isOpen}
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
-      />
-      <Navbar isOpen={isOpen} onOutsideClick={() => setIsOpen(false)} />
+      <HamburgerButton isNavbarOpen={isNavbarOpen} onClick={toggleNavbar} />
+      <Navbar isOpen={isNavbarOpen} onOutsideClick={closeNavbar} />
     </header>
   );
 };

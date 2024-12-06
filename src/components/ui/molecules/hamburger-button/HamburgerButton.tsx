@@ -1,9 +1,12 @@
 type HamburgerButtonProps = {
-  isOpen: boolean;
+  isNavbarOpen: boolean;
   onClick: () => void;
 };
 
-export const HamburgerButton = ({ isOpen, onClick }: HamburgerButtonProps) => (
+export const HamburgerButton = ({
+  isNavbarOpen,
+  onClick,
+}: HamburgerButtonProps) => (
   <button
     className='grid size-20 place-content-center p-6'
     onClick={onClick}
@@ -16,7 +19,7 @@ export const HamburgerButton = ({ isOpen, onClick }: HamburgerButtonProps) => (
             after:absolute after:-ml-6 after:h-2 after:w-12 after:rounded-full
             after:bg-black after:transition-all after:duration-150 after:content-['']
         ${
-          isOpen
+          isNavbarOpen
             ? 'h-0 bg-white before:-translate-y-1 before:rotate-45 after:-translate-y-1 after:-rotate-45'
             : 'h-2 before:-translate-y-4 after:translate-y-4'
         }`}

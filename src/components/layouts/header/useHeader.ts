@@ -11,50 +11,50 @@ const WHEEL_EVENT = 'wheel';
 const TOUCHMOVE_EVENT = 'touchmove';
 
 const useCloseNavbarOnPathChange = (
-  isOpen: boolean,
-  setIsOpen: (isOpen: boolean) => void,
+  isNavbarOpen: boolean,
+  setIsNavbarOpen: (isNavbarOpen: boolean) => void,
 ) => {
   const pathname = usePathname();
   const previousPathname = useRef<string>('');
 
   useEffect(() => {
-    const isOpenAndPathChanged =
-      isOpen && pathname !== previousPathname.current;
+    const isNavbarOpenAndPathChanged =
+      isNavbarOpen && pathname !== previousPathname.current;
 
-    if (isOpenAndPathChanged) {
-      setIsOpen(false);
+    if (isNavbarOpenAndPathChanged) {
+      setIsNavbarOpen(false);
     }
 
     previousPathname.current = pathname;
-  }, [pathname, isOpen, setIsOpen]);
+  }, [pathname, isNavbarOpen, setIsNavbarOpen]);
 };
 
 const useCloseNavbarOnEscape = (
-  isOpen: boolean,
-  setIsOpen: (isOpen: boolean) => void,
+  isNavbarOpen: boolean,
+  setIsNavbarOpen: (isNavbarOpen: boolean) => void,
 ) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === ESCAPE_KEY && isOpen) {
-        setIsOpen(false);
+      if (event.key === ESCAPE_KEY && isNavbarOpen) {
+        setIsNavbarOpen(false);
       }
     };
 
     document.addEventListener(KEYDOWN_EVENT, handleKeyDown);
 
     return () => document.removeEventListener(KEYDOWN_EVENT, handleKeyDown);
-  }, [isOpen, setIsOpen]);
+  }, [isNavbarOpen, setIsNavbarOpen]);
 };
 
 const useCloseNavbar = (
-  isOpen: boolean,
-  setIsOpen: (isOpen: boolean) => void,
+  isNavbarOpen: boolean,
+  setIsNavbarOpen: (isNavbarOpen: boolean) => void,
 ) => {
-  useCloseNavbarOnPathChange(isOpen, setIsOpen);
-  useCloseNavbarOnEscape(isOpen, setIsOpen);
+  useCloseNavbarOnPathChange(isNavbarOpen, setIsNavbarOpen);
+  useCloseNavbarOnEscape(isNavbarOpen, setIsNavbarOpen);
 };
 
-const useDisableScroll = (isOpen: boolean) => {
+const useDisableScroll = (isNavbarOpen: boolean) => {
   const onScroll = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -66,7 +66,7 @@ const useDisableScroll = (isOpen: boolean) => {
       document.body.removeEventListener(TOUCHMOVE_EVENT, onScroll);
     };
 
-    if (isOpen) {
+    if (isNavbarOpen) {
       document.body.addEventListener(
         WHEEL_EVENT,
         onScroll,
@@ -84,11 +84,10 @@ const useDisableScroll = (isOpen: boolean) => {
     }
 
     return removeEventListeners;
-  }, [isOpen]);
+  }, [isNavbarOpen]);
 };
 
-export const useHeader = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const useIsScrolled = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const onScroll = () => setIsScrolled(window.scrollY > TOP_OF_PAGE);
@@ -100,13 +99,24 @@ export const useHeader = () => {
     return () => window.removeEventListener(SCROLL_EVENT, onScroll);
   }, []);
 
-  useCloseNavbar(isOpen, setIsOpen);
+  return { isScrolled };
+};
 
-  useDisableScroll(isOpen);
+export const useHeader = () => {
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const toggleNavbar = () => setIsNavbarOpen((isNavbarOpen) => !isNavbarOpen);
+  const closeNavbar = () => setIsNavbarOpen(false);
+
+  useCloseNavbar(isNavbarOpen, setIsNavbarOpen);
+
+  useDisableScroll(isNavbarOpen);
+
+  const { isScrolled } = useIsScrolled();
 
   return {
-    isOpen,
-    setIsOpen,
+    isNavbarOpen,
+    toggleNavbar,
+    closeNavbar,
     isScrolled,
   };
 };
