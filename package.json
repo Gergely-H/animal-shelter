@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "prisma": {
-    "schema": "./src/prisma/schema.prisma"
+    "schema": "./src/database/schema.prisma"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -16,7 +16,9 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "test": "echo No test has been added yet."
+    "test": "echo No test has been added yet.",
+    "pdb": "npx prisma db push",
+    "pst": "npx prisma studio"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
