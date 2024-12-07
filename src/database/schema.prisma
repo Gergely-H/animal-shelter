@@ -10,10 +10,28 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  name      String?
-  email     String?  @unique
+  name      String
+  email     String   @unique
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
+}
 
-  @@map(name: "users")
+model Animal {
+  id          String @id @default(cuid())
+  name        String
+  age         Int
+  sex         String
+  description String
+  Dog         Dog?
+  Cat         Cat?
+}
+
+model Dog {
+  id     String @id @default(cuid())
+  animal Animal @relation(fields: [id], references: [id])
+}
+
+model Cat {
+  id     String @id @default(cuid())
+  animal Animal @relation(fields: [id], references: [id])
 }
