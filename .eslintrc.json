@@ -32,13 +32,24 @@
   "root": true,
   "overrides": [
     {
-      "files": ["src/{app,components}/**/*.{ts,tsx}"],
+      /**
+       * Default exports are disabled because they are error-prone, especially during refactoring.
+       * The exceptions are some of the Next.js specific files, which are listed here.
+       */
+      "files": ["src/app/**/{page,layout}.tsx"],
       "rules": {
-        /**
-         **************************************************************************
-         * filename-export plugin rules:
-         **************************************************************************
-         */
+        "no-restricted-exports": "off"
+      }
+    },
+    {
+      /**
+       **************************************************************************
+       * filename-export plugin rules:
+       **************************************************************************
+       * Only some Next.js specific files can have named exports with different names than their files.
+       */
+      "files": ["!src/{app,components}/**/route.{ts,tsx}"],
+      "rules": {
         "filename-export/match-named-export": "error"
       }
     }
@@ -184,16 +195,15 @@
         ]
       }
     ],
-    "@typescript-eslint/no-restricted-types": [
+    "no-restricted-exports": [
       "error",
       {
-        "types": {
-          "React.FC": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
-          "React.FunctionComponent": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
-          "React.FunctionalComponent": "Use inline prop types. Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
-          "FC": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
-          "FunctionComponent": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
-          "FunctionalComponent": "Use inline prop types. Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177"
+        "restrictDefaultExports": {
+          "direct": true,
+          "named": true,
+          "defaultFrom": true,
+          "namedFrom": true,
+          "namespaceFrom": true
         }
       }
     ],
@@ -517,6 +527,19 @@
     "@typescript-eslint/require-array-sort-compare": "error",
     "@typescript-eslint/strict-boolean-expressions": "error",
     "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/no-restricted-types": [
+      "error",
+      {
+        "types": {
+          "React.FC": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "React.FunctionComponent": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "React.FunctionalComponent": "Use inline prop types. Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "FC": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "FunctionComponent": "Use inline prop types. Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+          "FunctionalComponent": "Use inline prop types. Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177"
+        }
+      }
+    ],
     /**
      * The "default-param-last" base eslint rule must be disabled as it can report incorrect errors
      * when using "@typescript-eslint/default-param-last" rule.
