@@ -46,9 +46,11 @@
        **************************************************************************
        * filename-export plugin rules:
        **************************************************************************
-       * Only some Next.js specific files can have named exports with different names than their files.
+       * Only some Next.js specific files can have named exports with different names
+       * than their files' name in the app and components folder.
        */
-      "files": ["!src/{app,components}/**/route.{ts,tsx}"],
+      "files": ["src/{app,components}/**/*.{ts,tsx}"],
+      "excludedFiles": ["src/app/**/route.ts"],
       "rules": {
         "filename-export/match-named-export": "error"
       }
