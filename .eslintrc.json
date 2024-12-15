@@ -34,9 +34,9 @@
     {
       /**
        * Default exports are disabled because they are error-prone, especially during refactoring.
-       * The exceptions are some of the Next.js specific files, which are listed here.
+       * The exceptions are some of the Next.js specific files and config files.
        */
-      "files": ["src/app/**/{page,layout}.tsx"],
+      "files": ["src/app/**/{page,layout}.tsx", "*.config.ts"],
       "rules": {
         "no-restricted-exports": "off"
       }
@@ -519,6 +519,12 @@
       "error",
       {
         "fixMixedExportsWithInlineTypeSpecifier": false
+      }
+    ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
       }
     ],
     "@typescript-eslint/consistent-type-imports": "error",
