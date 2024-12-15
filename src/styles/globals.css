@@ -40,6 +40,6 @@ body {
   }
 
   .page-padding-top {
-    padding-top: var(--header-full-height);
+    padding-top: calc(var(--header-full-height) + 1rem);
   }
 }
