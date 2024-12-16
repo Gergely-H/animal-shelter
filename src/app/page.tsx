@@ -1,4 +1,4 @@
-import { prisma } from '@/database/prisma';
+import { prisma } from '@/prisma/prisma';
 
 const Home = async () => {
   const user = await prisma.user.findFirst({
@@ -8,9 +8,9 @@ const Home = async () => {
   return (
     <div>
       <span>{user?.id}</span>
-      <span>{user?.name}</span>
+      {/* <span>{user?.name}</span>
       <span>{user?.email}</span>
-      <span>{user?.createdAt.toDateString()}</span>
+      <span>{user?.createdAt.toDateString()}</span> */}
     </div>
   );
 };

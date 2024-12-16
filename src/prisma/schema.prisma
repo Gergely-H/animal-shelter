@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitApi"]
 }
 
 datasource db {
@@ -17,13 +18,15 @@ model User {
 }
 
 model Animal {
-  id          String @id @default(cuid())
-  name        String
-  age         Int
-  sex         String
-  description String
-  Dog         Dog?
-  Cat         Cat?
+  id            String   @id @default(cuid())
+  name          String
+  age           Int?
+  sex           String?
+  description   String?
+  profilePicUrl String?  @map(name: "profile_pic_url")
+  imageUrls     String[] @map(name: "image_urls")
+  Dog           Dog?
+  Cat           Cat?
 }
 
 model Dog {
