@@ -1,42 +1,36 @@
 import { Image } from '@/components/ui/atoms/image/Image';
+import type { Animal } from '@prisma/client';
+import Link from 'next/link';
 
 type AnimalCardProps = {
-  animal: {
-    name: string;
-    age: string;
-    sex: string;
-    id: string;
-    imgUrl: string;
-  };
+  animal: Animal;
 };
 
 export const AnimalCard = ({ animal }: AnimalCardProps) => {
-  const { name, age, sex, imgUrl } = animal;
+  const { name, age, sex, profilePicUrl, imageUrls } = animal;
 
   return (
-    <div
+    <Link
       className={`
-        flex h-[450px] w-3/4 flex-col border-2 border-black
-        md:w-2/5
-        lg:w-1/4
-        xl:w-1/5
-        2xl:w-1/6
+        flex h-[450px] w-[330px] flex-col border-2 border-black
       `}
+      href={`/kutyak/${animal.id}/${animal.name}`}
     >
-      <div className='relative basis-4/5'>
+      <div className='relative min-h-[80%] w-full basis-4/5'>
         <Image
           alt={name}
           fill
           priority
-          src={imgUrl}
+          src={profilePicUrl ?? '/herosz-budapest-logo.svg'}
           style={{ objectFit: 'cover' }}
         />
       </div>
-      <div>
+      <div className='w-full'>
         <p>{name}</p>
         <p>{age}</p>
         <p>{sex}</p>
+        <p>{imageUrls}</p>
       </div>
-    </div>
+    </Link>
   );
 };
