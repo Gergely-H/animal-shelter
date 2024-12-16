@@ -67,18 +67,10 @@ const useDisableScroll = (isNavbarOpen: boolean) => {
     };
 
     if (isNavbarOpen) {
-      document.body.addEventListener(
-        WHEEL_EVENT,
-        onScroll,
-        // eslint-disable-next-line @typescript-eslint/naming-convention -- This rule is intended for project code, not for libraries or built in APIs.
-        { passive: false },
-      );
-      document.body.addEventListener(
-        TOUCHMOVE_EVENT,
-        onScroll,
-        // eslint-disable-next-line @typescript-eslint/naming-convention -- This rule is intended for project code, not for libraries or built in APIs.
-        { passive: false },
-      );
+      document.body.addEventListener(WHEEL_EVENT, onScroll, { passive: false });
+      document.body.addEventListener(TOUCHMOVE_EVENT, onScroll, {
+        passive: false,
+      });
     } else {
       removeEventListeners();
     }

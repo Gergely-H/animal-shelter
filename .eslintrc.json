@@ -439,13 +439,7 @@
        * Booleans:
        */
       {
-        "selector": [
-          "variable",
-          "parameter",
-          "property",
-          "parameterProperty",
-          "accessor"
-        ],
+        "selector": ["variable", "parameter", "parameterProperty", "accessor"],
         "types": ["boolean"],
         "format": ["StrictPascalCase"],
         "prefix": ["is", "should", "has", "can", "did", "will"]
