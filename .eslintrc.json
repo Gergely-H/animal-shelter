@@ -377,7 +377,10 @@
     "react/jsx-no-leaked-render": "off",
     "react-hooks/exhaustive-deps": "error",
     "react/forbid-component-props": "off",
-    "react/jsx-props-no-spreading": ["error", { "exceptions": ["NextImage"] }],
+    "react/jsx-props-no-spreading": [
+      "error",
+      { "exceptions": ["NextImage"], "html": "ignore" }
+    ],
     "react/jsx-max-depth": ["error", { "max": 4 }],
     "react/prefer-read-only-props": "off",
 
@@ -527,7 +530,6 @@
     "@typescript-eslint/no-useless-empty-export": "error",
     "@typescript-eslint/promise-function-async": "error",
     "@typescript-eslint/require-array-sort-compare": "error",
-    "@typescript-eslint/strict-boolean-expressions": "error",
     "@typescript-eslint/switch-exhaustiveness-check": "error",
     "@typescript-eslint/no-restricted-types": [
       "error",
@@ -603,6 +605,7 @@
         "prev": ["block-like", "interface", "type"],
         "next": "*"
       }
-    ]
+    ],
+    "@stylistic/max-len": ["error", { "code": 90 }]
   }
 }
