@@ -605,7 +605,6 @@
         "prev": ["block-like", "interface", "type"],
         "next": "*"
       }
-    ],
-    "@stylistic/max-len": ["error", { "code": 90 }]
+    ]
   }
 }
