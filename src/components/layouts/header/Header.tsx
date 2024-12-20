@@ -1,5 +1,6 @@
 'use client';
 
+import { Backdrop } from '@/components/ui/atoms/backdrop/Backdrop';
 import { HamburgerButton } from '@/components/ui/molecules/hamburger-button/HamburgerButton';
 import { Logo } from '@/components/ui/molecules/logo/Logo';
 import { Navbar } from '@/components/ui/organisms/navbar/Navbar';
@@ -21,7 +22,8 @@ export const Header = () => {
     >
       <Logo />
       <HamburgerButton isNavbarOpen={isNavbarOpen} onClick={toggleNavbar} />
-      <Navbar isOpen={isNavbarOpen} onOutsideClick={closeNavbar} />
+      <Backdrop onClick={closeNavbar} showBackdrop={isNavbarOpen} />
+      <Navbar closeNavbar={closeNavbar} isOpen={isNavbarOpen} />
     </header>
   );
 };

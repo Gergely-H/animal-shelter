@@ -1,6 +1,6 @@
 import { Image } from '@/components/ui/atoms/image/Image';
+import { Link } from '@/components/utils/link/Link';
 import type { Animal } from '@prisma/client';
-import Link from 'next/link';
 
 type AnimalCardProps = {
   animal: Animal;
