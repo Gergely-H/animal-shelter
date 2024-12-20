@@ -11,9 +11,7 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
 
   return (
     <Link
-      className={`
-        flex h-[450px] w-[330px] flex-col border-2 border-black
-      `}
+      className='flex h-[450px] w-[330px] flex-col border-2 border-black'
       href={`/kutyak/${animal.id}/${animal.name}`}
     >
       <div className='relative min-h-[80%] w-full basis-4/5'>
