@@ -193,6 +193,11 @@
             "name": "next/image",
             "importNames": ["default"],
             "message": "Do not use Next Image component. Use the custom common Image component."
+          },
+          {
+            "name": "next/link",
+            "importNames": ["default"],
+            "message": "Do not use Next Link component. Use the custom common TransitionLink component."
           }
         ]
       }
@@ -379,10 +384,11 @@
     "react/forbid-component-props": "off",
     "react/jsx-props-no-spreading": [
       "error",
-      { "exceptions": ["NextImage"], "html": "ignore" }
+      { "exceptions": ["NextImage", "NextLink"], "html": "ignore" }
     ],
     "react/jsx-max-depth": ["error", { "max": 4 }],
     "react/prefer-read-only-props": "off",
+    "react/require-default-props": "off",
 
     /**
      **************************************************************************
@@ -445,7 +451,7 @@
         "selector": ["variable", "parameter", "parameterProperty", "accessor"],
         "types": ["boolean"],
         "format": ["StrictPascalCase"],
-        "prefix": ["is", "should", "has", "can", "did", "will"]
+        "prefix": ["is", "should", "has", "can", "did", "will", "show"]
       },
       /**
        * Global booleans:
@@ -455,7 +461,7 @@
         "types": ["boolean"],
         "modifiers": ["global", "const"],
         "format": ["UPPER_CASE"],
-        "prefix": ["IS_", "SHOULD_", "HAS_", "CAN_", "DID_", "WILL_"]
+        "prefix": ["IS_", "SHOULD_", "HAS_", "CAN_", "DID_", "WILL_", "SHOW_"]
       },
       /**
        * Types:
@@ -603,6 +609,11 @@
       {
         "blankLine": "always",
         "prev": ["block-like", "interface", "type"],
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "directive",
         "next": "*"
       }
     ]
