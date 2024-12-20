@@ -21,8 +21,8 @@ export const Navbar = ({ isOpen, onOutsideClick }: NavbarProps) => {
     <>
       <div
         className={`
-            absolute left-0 top-full h-screen w-screen bg-gray-500 [transition:opacity_300ms]
-            ${isOpen ? 'opacity-50' : 'opacity-0'}
+            absolute left-0 top-full h-screen w-screen [transition:backdrop-filter_300ms]
+            ${isOpen ? 'backdrop-blur-[3px] backdrop-brightness-75' : 'backdrop-blur-none '}
           `}
         onClick={onOutsideClick}
         onTransitionEnd={() => {
