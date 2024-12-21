@@ -9,6 +9,7 @@ export const hu = {
   },
   navbar: {
     news: { label: 'Hírek', path: '/hirek' },
+    calendar: { label: 'Naptár, nyitvatartás', path: '/naptar' },
     dogs: { label: 'Kutyák', path: '/kutyak' },
     cats: { label: 'Cicák', path: '/cicak' },
     donation: { label: 'Adományozás', path: '/adomanyozas' },
