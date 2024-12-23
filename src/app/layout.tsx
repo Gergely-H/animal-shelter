@@ -1,3 +1,4 @@
+import { Footer } from '@/components/layouts/footer/Footer';
 import { Header } from '@/components/layouts/header/Header';
 import { Bootstrapper } from '@/components/utils/bootstrapper/Bootstrapper';
 import { contentId, pageTransitionAnimation } from '@/constants/styles';
@@ -46,6 +47,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
         >
           {children}
         </div>
+        <Footer />
       </body>
     </Bootstrapper>
   </html>
