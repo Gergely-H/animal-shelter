@@ -10,7 +10,7 @@ export const PageTransitionAnimation = ({ children }: PageTransitionAnimationPro
     className='fade-in'
     id={contentId}
     style={{
-      transition: `opacity ${pageTransitionAnimation.duration.toString()}ms ease-in`,
+      transition: `opacity ${pageTransitionAnimation.fadeDuration.toString()}ms ease-in`,
     }}
   >
     {children}

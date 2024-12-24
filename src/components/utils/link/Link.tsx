@@ -1,7 +1,6 @@
 'use client';
 
-import { contentId, pageTransitionAnimation } from '@/constants/styles';
-import { delayExecution } from '@/utils/timings';
+import { transitionPageWithAnimation } from '@/utils/pageTransitions';
 // eslint-disable-next-line consistent-default-export-name/default-import-match-filename, no-restricted-imports -- This rule is intended for project code, not for libraries or built-in APIs. This is the only exception where import of NextLink is allowed.
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -23,16 +22,10 @@ export const Link = ({ callback, href, children, ...props }: LinkProps) => {
       callback();
     }
 
-    const content = document.querySelector(`#${contentId}`);
-    const pageTransitionAnimationClassName = 'opacity-0';
+    const changeRoute = () =>
+      router.push(typeof href === 'string' ? href : (href.href ?? '/'));
 
-    content?.classList.add(pageTransitionAnimationClassName);
-    await delayExecution(pageTransitionAnimation.duration);
-
-    router.push(typeof href === 'string' ? href : (href.href ?? '/'));
-
-    await delayExecution(pageTransitionAnimation.delay);
-    content?.classList.remove(pageTransitionAnimationClassName);
+    await transitionPageWithAnimation(changeRoute);
   };
 
   return (
