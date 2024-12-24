@@ -3,10 +3,7 @@ type HamburgerButtonProps = {
   onClick: () => void;
 };
 
-export const HamburgerButton = ({
-  isNavbarOpen,
-  onClick,
-}: HamburgerButtonProps) => (
+export const HamburgerButton = ({ isNavbarOpen, onClick }: HamburgerButtonProps) => (
   <button
     className='grid size-20 place-content-center p-6'
     onClick={onClick}
