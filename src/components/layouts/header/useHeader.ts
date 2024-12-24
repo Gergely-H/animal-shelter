@@ -1,14 +1,11 @@
 'use client';
 
+import { WEB_EVENTS } from '@/constants/webEvents';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 const ESCAPE_KEY = 'Escape';
 const TOP_OF_PAGE = 0;
-const KEYDOWN_EVENT = 'keydown';
-const SCROLL_EVENT = 'scroll';
-const WHEEL_EVENT = 'wheel';
-const TOUCHMOVE_EVENT = 'touchmove';
 
 const useCloseNavbarOnPathChange = (
   isNavbarOpen: boolean,
@@ -40,9 +37,9 @@ const useCloseNavbarOnEscape = (
       }
     };
 
-    document.addEventListener(KEYDOWN_EVENT, handleKeyDown);
+    document.addEventListener(WEB_EVENTS.Keydown, handleKeyDown);
 
-    return () => document.removeEventListener(KEYDOWN_EVENT, handleKeyDown);
+    return () => document.removeEventListener(WEB_EVENTS.Keydown, handleKeyDown);
   }, [isNavbarOpen, setIsNavbarOpen]);
 };
 
@@ -62,13 +59,13 @@ const useDisableScroll = (isNavbarOpen: boolean) => {
 
   useEffect(() => {
     const removeEventListeners = () => {
-      document.body.removeEventListener(WHEEL_EVENT, onScroll);
-      document.body.removeEventListener(TOUCHMOVE_EVENT, onScroll);
+      document.body.removeEventListener(WEB_EVENTS.Wheel, onScroll);
+      document.body.removeEventListener(WEB_EVENTS.Touchmove, onScroll);
     };
 
     if (isNavbarOpen) {
-      document.body.addEventListener(WHEEL_EVENT, onScroll, { passive: false });
-      document.body.addEventListener(TOUCHMOVE_EVENT, onScroll, {
+      document.body.addEventListener(WEB_EVENTS.Wheel, onScroll, { passive: false });
+      document.body.addEventListener(WEB_EVENTS.Touchmove, onScroll, {
         passive: false,
       });
     } else {
@@ -86,9 +83,9 @@ const useIsScrolled = () => {
 
   useEffect(() => {
     onScroll();
-    window.addEventListener(SCROLL_EVENT, onScroll);
+    window.addEventListener(WEB_EVENTS.Scroll, onScroll);
 
-    return () => window.removeEventListener(SCROLL_EVENT, onScroll);
+    return () => window.removeEventListener(WEB_EVENTS.Scroll, onScroll);
   }, []);
 
   return { isScrolled };
