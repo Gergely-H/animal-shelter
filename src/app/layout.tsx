@@ -1,7 +1,7 @@
 import { Footer } from '@/components/layouts/footer/Footer';
 import { Header } from '@/components/layouts/header/Header';
 import { Bootstrapper } from '@/components/utils/bootstrapper/Bootstrapper';
-import { contentId, pageTransitionAnimation } from '@/constants/styles';
+import { PageTransitionAnimation } from '@/components/utils/page-transition-animation/PageTransitionAnimation';
 import { getDictionary } from '@/languages/dictionaries';
 import type { Metadata } from 'next';
 import local from 'next/font/local';
@@ -39,14 +39,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
         className={`${geistSans.variable} ${geistMono.variable} page-padding-top overflow-y-scroll antialiased`}
       >
         <Header />
-        <div
-          id={contentId}
-          style={{
-            transition: `opacity ${pageTransitionAnimation.duration.toString()}ms ease-in`,
-          }}
-        >
-          {children}
-        </div>
+        <PageTransitionAnimation>{children}</PageTransitionAnimation>
         <Footer />
       </body>
     </Bootstrapper>
