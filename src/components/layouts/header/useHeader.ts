@@ -1,6 +1,7 @@
 'use client';
 
 import { WEB_EVENTS } from '@/constants/webEvents';
+import { useNativeNavigationWithAnimation } from '@/utils/pageTransitions';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
@@ -101,6 +102,8 @@ export const useHeader = () => {
   useDisableScroll(isNavbarOpen);
 
   const { isScrolled } = useIsScrolled();
+
+  useNativeNavigationWithAnimation();
 
   return {
     isNavbarOpen,

@@ -7,7 +7,7 @@ type PageTransitionAnimationProps = {
 
 export const PageTransitionAnimation = ({ children }: PageTransitionAnimationProps) => (
   <div
-    className='fade-in'
+    className='animate-fade-in'
     id={contentId}
     style={{
       transition: `opacity ${pageTransitionAnimation.fadeDuration.toString()}ms ease-in`,

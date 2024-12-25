@@ -3,5 +3,5 @@ export enum WEB_EVENTS {
   Scroll = 'scroll',
   Wheel = 'wheel',
   Touchmove = 'touchmove',
-  Popstate = 'popstate',
+  PopState = 'popstate',
 }

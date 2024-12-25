@@ -38,17 +38,4 @@ body {
   .page-padding-top {
     padding-top: calc(var(--header-full-height) + 1rem);
   }
-
-  .fade-in {
-    animation: fadeIn 1.5s ease-in-out none;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 }
