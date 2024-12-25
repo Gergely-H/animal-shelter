@@ -20,9 +20,9 @@ export const Header = () => {
             : 'header-full-height'
         }`}
     >
-      <Logo />
+      <Logo onClick={closeNavbar} />
       <HamburgerButton isNavbarOpen={isNavbarOpen} onClick={toggleNavbar} />
-      <Backdrop onClick={closeNavbar} showBackdrop={isNavbarOpen} />
+      <Backdrop isNavbarOpen={isNavbarOpen} onClick={closeNavbar} />
       <Navbar closeNavbar={closeNavbar} isOpen={isNavbarOpen} />
     </header>
   );

@@ -1,8 +1,16 @@
 import { Image } from '@/components/ui/atoms/image/Image';
 import { Link } from '@/components/utils/link/Link';
 
-export const Logo = () => (
-  <Link className='relative flex h-full w-[105px] justify-center' href='/'>
+type LogoProps = {
+  onClick: () => void;
+};
+
+export const Logo = ({ onClick }: LogoProps) => (
+  <Link
+    callback={onClick}
+    className='relative flex h-full w-[105px] justify-center'
+    href='/'
+  >
     <Image
       alt='Herosz Budapest Logo'
       className='pb-1'
