@@ -36,7 +36,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang='hu'>
     <Bootstrapper>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} page-padding-top overflow-y-scroll antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} overflow-y-scroll pt-[calc(var(--extended-header-height)+1rem)] antialiased`}
       >
         <Header />
         <PageTransitionAnimation>{children}</PageTransitionAnimation>

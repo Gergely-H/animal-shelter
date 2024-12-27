@@ -17,7 +17,7 @@ export const Header = () => {
         ${
           isScrolled
             ? 'h-20 border-b border-neutral-400 shadow-[0_5px_10px_rgba(0,0,0,0.3)]'
-            : 'header-full-height'
+            : 'h-[var(--extended-header-height)]'
         }`}
     >
       <Logo onClick={closeNavbar} />
