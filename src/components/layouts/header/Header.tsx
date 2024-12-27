@@ -1,8 +1,8 @@
 'use client';
 
 import { Backdrop } from '@/components/ui/atoms/backdrop/Backdrop';
-import { HamburgerButton } from '@/components/ui/molecules/hamburger-button/HamburgerButton';
-import { Logo } from '@/components/ui/molecules/logo/Logo';
+import { HamburgerButton } from '@/components/ui/atoms/hamburger-button/HamburgerButton';
+import { Logo } from '@/components/ui/atoms/logo/Logo';
 import { Navbar } from '@/components/ui/organisms/navbar/Navbar';
 import { useHeader } from './useHeader';
 
