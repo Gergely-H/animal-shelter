@@ -54,6 +54,12 @@
       "rules": {
         "filename-export/match-named-export": "error"
       }
+    },
+    {
+      "files": ["tailwind.config.ts"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
     }
   ],
   "rules": {
