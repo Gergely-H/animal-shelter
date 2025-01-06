@@ -1,33 +1,43 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import type { ChangeEvent } from 'react';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import type { ChangeEvent, RefObject } from 'react';
 
-const schema = z.object({
-  image: z.any().optional(),
-});
-
-type Schema = z.infer<typeof schema>;
+const ACCEPTED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'image/heic',
+  'image/heif',
+];
 
 type HiddenImageInputProps = {
-  onUpload: (event: ChangeEvent<HTMLInputElement>) => void;
+  onImageSelect: (event: ChangeEvent<HTMLInputElement>) => void;
+  hiddenInputRef: RefObject<HTMLInputElement>;
 };
 
-export const HiddenImageInput = ({ onUpload }: HiddenImageInputProps) => {
-  const hiddenInputRef = useRef<HTMLInputElement>(null);
-  const { register } = useForm<Schema>({
-    resolver: zodResolver(schema),
-  });
+export const HiddenImageInput = ({
+  onImageSelect,
+  hiddenInputRef,
+}: HiddenImageInputProps) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (ACCEPTED_IMAGE_TYPES.includes(file?.type ?? '')) {
+      onImageSelect(event);
+    } else {
+      // eslint-disable-next-line no-alert -- Temporary error handling until a proper notification is made.
+      window.alert(
+        'Only .jpg, .jpeg, .png, .webp, .heic and .heif formats are supported.',
+      );
+    }
+  };
 
   return (
     <input
+      accept={ACCEPTED_IMAGE_TYPES.join(', ')}
       className='hidden'
-      type='file'
-      {...register('image', {
-        onChange: onUpload,
-      })}
+      onChange={onChange}
       ref={hiddenInputRef}
+      type='file'
     />
   );
 };
