@@ -590,7 +590,7 @@
      * Source: https://typescript-eslint.io/rules/no-magic-numbers/#how-to-use
      */
     "no-magic-numbers": "off",
-    "@typescript-eslint/no-magic-numbers": "error",
+    "@typescript-eslint/no-magic-numbers": ["error", { "ignore": [0] }],
     /**
      * The "require-await" base eslint rule must be disabled as it can report incorrect errors
      * when using "@typescript-eslint/require-await" rule.
