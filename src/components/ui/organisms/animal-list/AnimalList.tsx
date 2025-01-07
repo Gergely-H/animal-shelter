@@ -1,8 +1,8 @@
 import { AnimalCard } from '@/components/ui/molecules/animal-card/AnimalCard';
-import type { Animal } from '@prisma/client';
+import type { ExtendedAnimal } from '@/types/animals';
 
 type AnimalListProps = {
-  animals: Animal[];
+  animals: ExtendedAnimal[];
 };
 
 export const AnimalList = ({ animals }: AnimalListProps) => (

@@ -1,4 +1,4 @@
-import { contentId, pageTransitionAnimation } from '@/constants/styles';
+import { contentId, pageTransitionAnimation } from '@/styles/constants';
 import type { ReactNode } from 'react';
 
 type PageTransitionAnimationProps = {

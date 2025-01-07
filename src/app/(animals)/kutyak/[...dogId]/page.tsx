@@ -1,4 +1,5 @@
 import { Image } from '@/components/ui/atoms/image/Image';
+import { animalImageFallbackUrl } from '@/constants/images';
 import { prisma } from '@/prisma/prisma';
 import type { Animal } from '@prisma/client';
 
@@ -55,7 +56,7 @@ const DogDetails = async ({ params }: DogDetailsProps) => {
             alt='doggo'
             fill
             priority
-            src={dog.profilePicUrl ?? '/herosz-budapest-logo.svg'}
+            src={dog.profilePicUrl ?? animalImageFallbackUrl}
             style={{ objectFit: 'cover' }}
           />
         </div>

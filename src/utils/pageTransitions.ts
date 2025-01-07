@@ -1,5 +1,5 @@
-import { contentId, pageTransitionAnimation } from '@/constants/styles';
 import { WEB_EVENTS } from '@/constants/webEvents';
+import { contentId, pageTransitionAnimation } from '@/styles/constants';
 import { delayExecution } from '@/utils/timings';
 import { useEffect } from 'react';
 
