@@ -1,6 +1,6 @@
 import { Image } from '@/components/ui/atoms/image/Image';
 import { animalImageFallbackUrl } from '@/constants/images';
-import { prisma } from '@/prisma/prisma';
+import { prisma } from '@/db/prisma/prisma';
 import type { Animal } from '@prisma/client';
 
 const fallbackDog: Animal = {

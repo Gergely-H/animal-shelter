@@ -1,4 +1,4 @@
-import { prisma } from '@/prisma/prisma';
+import { prisma } from '@/db/prisma/prisma';
 
 const Home = async () => {
   const user = await prisma.user.findFirst({

@@ -1,6 +1,6 @@
 import { AnimalList } from '@/components/ui/organisms/animal-list/AnimalList';
 import { paths } from '@/constants/paths';
-import { prisma } from '@/prisma/prisma';
+import { prisma } from '@/db/prisma/prisma';
 import type { ExtendedAnimal } from '@/types/animals';
 
 const getDogs = async () => {
