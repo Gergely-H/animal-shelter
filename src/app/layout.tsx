@@ -2,7 +2,7 @@ import { Footer } from '@/components/layouts/footer/Footer';
 import { Header } from '@/components/layouts/header/Header';
 import { Bootstrapper } from '@/components/utils/bootstrapper/Bootstrapper';
 import { PageTransitionAnimation } from '@/components/utils/page-transition-animation/PageTransitionAnimation';
-import { getDictionary } from '@/languages/dictionaries';
+import { getDictionary } from '@/languages/dictionary';
 import type { Metadata } from 'next';
 import local from 'next/font/local';
 import type { ReactNode } from 'react';

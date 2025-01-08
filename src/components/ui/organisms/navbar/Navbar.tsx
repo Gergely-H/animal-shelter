@@ -1,5 +1,5 @@
 import { NavButton } from '@/components/ui/atoms/nav-button/NavButton';
-import { getDictionary } from '@/languages/dictionaries';
+import { getDictionary } from '@/languages/dictionary';
 
 const dictionary = getDictionary();
 
